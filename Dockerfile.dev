@@ -1,0 +1,7 @@
+FROM node:slim
+
+WORKDIR /alpha.dedsec.cl
+RUN apt-get update && apt-get install -y procps openssl && rm -rf /var/lib/apt/lists/*
+EXPOSE 2400
+
+CMD ["npm", "run", "start:dev"]
