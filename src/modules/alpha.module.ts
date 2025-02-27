@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { AlphaController } from "src/controllers/alpha.controller";
+import { AlphaController } from "../controllers/alpha.controller";
 
 @Module({
     controllers: [AlphaController]
