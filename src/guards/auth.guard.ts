@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { Request } from "express";
 
 export class AuthGuard implements CanActivate {
-    private logger: Logger = new Logger();
+    private logger: Logger = new Logger(AuthGuard.name);
     private prisma: PrismaClient = new PrismaClient();
     public async canActivate(context: ExecutionContext): Promise<boolean> {
         try {
