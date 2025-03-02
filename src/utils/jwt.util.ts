@@ -19,14 +19,15 @@ export class JwtUtil {
     };
   };
 
-  public async verify(token: string): Promise<object> {
+  public async verify(token: string): Promise<{status: boolean, content: object}> {
     try {
-      this.logger.log(`[ verify() ]: Verificando token ${token}`);
+      this.logger.log(`[ verify() ]: Verificando token ${atob(token.split(".")[1])}`);
       const key: string = atob(await this.property.getProperty('Public Key'));
-      return jwt.verify(token, key, { algorithms: ['RS512'] });
+      const data = jwt.verify(token, key, { algorithms: ['RS512'] })
+      return { status: true, content: data };
     } catch (error) {
       this.logger.error(`[ verify() ]: Token inválido o expirado ${error}`);
-      return error;
+      return { status: false, content: error };
     };
   };
 

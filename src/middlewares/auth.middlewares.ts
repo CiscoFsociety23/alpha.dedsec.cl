@@ -10,6 +10,7 @@ export class VerifyBearerToken implements NestMiddleware {
             const { authorization } = request.headers;
             if(authorization?.split(" ")[0] === "Bearer"){
                 if(atob(authorization?.split(" ")[1].split(".")[0]) === `{"alg":"RS512","typ":"JWT"}`){
+                    request.headers.token = authorization?.split(" ")[1];
                     next();
                 } else {
                     response.status(400).json({ message: 'Algoritmo y tipo de token invalido' });
