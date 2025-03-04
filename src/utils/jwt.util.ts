@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import { Logger } from '@nestjs/common';
 import { PropertyUtil } from './property.util';
-import { AuthPayload } from 'src/interfaces/auth.dto';
+import { AuthPayload } from '../interfaces/auth.dto';
 
 export class JwtUtil {
 

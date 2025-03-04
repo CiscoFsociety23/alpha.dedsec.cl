@@ -1,10 +1,11 @@
 import { CanActivate, ExecutionContext, Logger } from "@nestjs/common";
 import { PrismaClient } from "@prisma/client";
+import { withAccelerate } from "@prisma/extension-accelerate";
 import { Request } from "express";
 
 export class AuthGuard implements CanActivate {
     private logger: Logger = new Logger(AuthGuard.name);
-    private prisma: PrismaClient = new PrismaClient();
+    private prisma = new PrismaClient().$extends(withAccelerate());
     public async canActivate(context: ExecutionContext): Promise<boolean> {
         try {
             this.logger.log(`[ AuthGuard() ]: Verificando credenciales de acceso`);

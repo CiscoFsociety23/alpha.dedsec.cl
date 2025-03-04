@@ -1,6 +1,6 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { AuthPayload } from "../interfaces/auth.dto";
-import { JwtUtil } from "src/utils/jwt.util";
+import { JwtUtil } from "../utils/jwt.util";
 
 @Injectable()
 export class AuthService {
