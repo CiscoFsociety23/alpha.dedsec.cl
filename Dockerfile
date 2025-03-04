@@ -7,9 +7,11 @@ COPY ./tsconfig.json /alpha.dedsec.cl/
 COPY ./tsconfig.build.json /alpha.dedsec.cl/
 COPY ./nest-cli.json /alpha.dedsec.cl/
 COPY .env /alpha.dedsec.cl/
+COPY ./prisma/schema.prisma /alpha.dedsec.cl/prisma/schema.prisma
 COPY ./src /alpha.dedsec.cl/
 RUN npm install
 RUN npm run build
+RUN npx prisma generate --no-engine
 EXPOSE 2400
 
 CMD ["npm", "run", "start:prod"]
